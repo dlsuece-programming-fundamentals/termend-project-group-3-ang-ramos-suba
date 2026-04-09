@@ -128,8 +128,8 @@ Improvements in the future might involve:
 ## How to Run
 
 ```bash
-# 1. Go to src folder
-# 2. Open index.html in browser
+1. Go to src folder
+2. Open index.html in browser
 ```
 
 ## Project Structure
