@@ -2,7 +2,6 @@
 # LBYCPG3 Term End Project — Farm Ledger App
 
 **Group Members:** 
-
 - RAMOS, MARK LAWRENCE T.
 - ANG, DARYL CLYDE T.
 - SUBA, PAUL GERJO J.
