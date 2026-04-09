@@ -74,13 +74,37 @@ The project was carried out in the following stages:
 ## Testing and Evaluation of Results
 
 ### Results
-Present the outcomes of the project, including functionality and performance. Use screenshots or tables if necessary to illustrate testing results.
+The system successfully:
+- Records costs, harvests and prices.
+- Presentation of data in records pages.
+- Automatically calculates estimated profit.
+- Navigates properly through pages.
+
+Screens shown in testing (as seen in documentation):
+- Home Dashboard
+- Records (Expenses, Harvest, Prices)
+- Summary page
 
 ### Discussion
-Analyze the results and discuss their implications. Compare the project's outcomes with the initial objectives presented in your proposal.
+The system successfully attained its key goals through:
+- Offering a centralized farm data platform.
+- Ease of tracking (Improvement over manual tracking).
+- Simplifying profit calculation
+
+It shows how simple web technologies can make useful agricultural devices.
 
 ### Conclusion
-Summarize the key findings and contributions of the project. Offer insights into the future potential of the website.
+The Farm Ledger application was developed successfully as a web-based application to manage farming data.
+
+It allows users to:
+- Track harvest inventory
+- Monitor expenses
+- Estimate profit
+
+Improvements in the future might involve:
+- Cloud database integration
+- Mobile optimization
+- Live market price information.
 
 ## References
 
