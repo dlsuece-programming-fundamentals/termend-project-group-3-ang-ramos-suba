@@ -1,14 +1,375 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LBYCPG3 Project</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1e6b35" />
+    <title>Farm Ledger</title>
+
+    <link rel="stylesheet" href="./css/styles.css" />
 </head>
+
 <body>
-    <h1>Hello, World!</h1>
-    <p>Replace this with your project.</p>
-    <script src="js/script.js"></script>
+    <div id="app">
+        <!-- Dashboard page: shows overview cards, quick actions, and recent activity -->
+        <section class="page active" id="page-home">
+            <div class="page-header">
+                <h1>🌿 Farm Ledger</h1>
+                <p id="header-date">Loading…</p>
+                <div class="status-pill"><span class="status-dot"></span> All data saved on this device</div>
+            </div>
+            <div class="page-body">
+                <p class="section-label">Your Farm at a Glance</p>
+                <div class="glance-grid">
+                    <div class="glance-card">
+                        <span class="glance-icon">🔴</span>
+                        <div class="glance-label">Total Expenses</div>
+                        <div class="glance-val" id="g-expenses">₱0</div>
+                        <div class="glance-sub" id="g-exp-count">0 records</div>
+                    </div>
+                    <div class="glance-card">
+                        <span class="glance-icon">🌾</span>
+                        <div class="glance-label">Total Harvest</div>
+                        <div class="glance-val" id="g-harvest">0 kg</div>
+                        <div class="glance-sub" id="g-hrv-count">0 crops</div>
+                    </div>
+                    <div class="glance-card">
+                        <span class="glance-icon">🏷️</span>
+                        <div class="glance-label">Market Prices</div>
+                        <div class="glance-val" id="g-prices">0 saved</div>
+                        <div class="glance-sub">Latest rates</div>
+                    </div>
+                    <div class="glance-card accent">
+                        <span class="glance-icon">📈</span>
+                        <div class="glance-label">Est. Profit</div>
+                        <div class="glance-val" id="g-profit">₱0</div>
+                        <div class="glance-sub">Estimated gain</div>
+                    </div>
+                </div>
+
+                <p class="section-label">Add a Record</p>
+                <div class="quick-row">
+                    <button class="quick-btn" onclick="showForm('expense')">
+                        <span class="qi">🔴</span>Add Expense
+                    </button>
+                    <button class="quick-btn" onclick="showForm('harvest')">
+                        <span class="qi">🌾</span>Add Harvest
+                    </button>
+                    <button class="quick-btn" onclick="showForm('price')">
+                        <span class="qi">🏷️</span>Add Price
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="flex-between" style="margin-bottom:12px">
+                        <p class="section-label" style="margin:0">Recent Activity</p>
+                        <button class="see-all-btn" onclick="goPage('records')">See all ›</button>
+                    </div>
+                    <div id="activity-list">
+                        <div class="empty-state"><span class="emoji">📋</span>No records yet. Start adding!</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Records page: displays saved expenses, harvests, and market prices -->
+        <section class="page" id="page-records">
+            <div class="page-header tabs-header">
+                <h1>Records</h1>
+                <div class="tabs">
+                    <button class="tab-btn active" id="tab-expenses" onclick="switchTab('expenses')">Expenses (<span
+                            id="cnt-exp">0</span>)</button>
+                    <button class="tab-btn" id="tab-harvests" onclick="switchTab('harvests')">Harvests (<span
+                            id="cnt-hrv">0</span>)</button>
+                    <button class="tab-btn" id="tab-prices" onclick="switchTab('prices')">Prices (<span
+                            id="cnt-prc">0</span>)</button>
+                </div>
+            </div>
+            <div class="page-body">
+                <div id="records-expenses"></div>
+                <div id="records-harvests" style="display:none"></div>
+                <div id="records-prices" style="display:none"></div>
+            </div>
+        </section>
+
+        <!-- Summary page: shows total expenses, estimated harvest value, and profit -->
+        <section class="page" id="page-summary">
+            <div class="page-header">
+                <h1>Farm Summary</h1>
+            </div>
+            <div class="page-body">
+
+                <div class="summary-card">
+                    <div class="summary-card-header">
+                        <div class="summary-icon expense">🔴</div>
+                        <div>
+                            <div class="summary-label">Total Expenses</div>
+                            <div class="summary-val expense" id="s-expenses">₱0</div>
+                            <div class="summary-desc" id="s-exp-desc">No records yet.</div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <p class="section-label">By Category</p>
+                    <div id="s-exp-breakdown"></div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-card-header">
+                        <div class="summary-icon harvest">🌾</div>
+                        <div>
+                            <div class="summary-label">Est. Harvest Value</div>
+                            <div class="summary-val harvest" id="s-harvest-val">₱0</div>
+                            <div class="summary-desc">Based on your latest saved market prices.</div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <p class="section-label">Crop Breakdown</p>
+                    <div id="s-hrv-breakdown"></div>
+                </div>
+
+                <div class="profit-card">
+                    <div class="summary-label">Estimated Profit</div>
+                    <div class="summary-val" id="s-profit">₱0</div>
+                    <div class="summary-desc" id="s-profit-desc">Add expenses and harvests to see your estimate.</div>
+                    <div class="profit-calc">
+                        <div class="profit-calc-row"><span>Est. Harvest Value</span><span id="pc-harvest">₱0</span>
+                        </div>
+                        <div class="profit-calc-row"><span>Total Expenses</span><span id="pc-expense">– ₱0</span></div>
+                        <div class="profit-calc-row total"><span>Est. Profit</span><span id="pc-profit">₱0</span></div>
+                    </div>
+                </div>
+
+                <div class="disclaimer">
+                    <span class="disclaimer-icon">ℹ️</span>
+                    <p>All values are <strong>estimates only</strong>. Actual results depend on final selling prices,
+                        total
+                        harvest yield, and any additional costs not yet recorded.</p>
+                </div>
+
+                <p class="section-label">Quick Add</p>
+                <div class="quick-row">
+                    <button class="quick-btn" onclick="showForm('expense')"><span class="qi">🔴</span>Add
+                        Expense</button>
+                    <button class="quick-btn" onclick="showForm('harvest')"><span class="qi">🌾</span>Add
+                        Harvest</button>
+                    <button class="quick-btn" onclick="showForm('price')"><span class="qi">🏷️</span>Add Price</button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Expense form: used to add or edit an expense record -->
+        <section class="page" id="page-expense">
+            <div class="sub-header">
+                <button class="btn-back" onclick="goBack()">‹</button>
+                <h2 id="expense-form-title">Add Expense</h2>
+            </div>
+            <div class="form-body">
+                <input type="hidden" id="expense-edit-id" />
+                <div class="field-group">
+                    <label class="field-label">Amount (₱)<span class="req">*</span></label>
+                    <div class="input-wrap">
+                        <span class="input-prefix">₱</span>
+                        <input type="number" id="exp-amount" placeholder="0" min="0" />
+                    </div>
+                </div>
+                <div class="field-group">
+                    <label class="field-label">Category<span class="req">*</span></label>
+                    <div class="chip-group" id="exp-category-group">
+                        <span class="chip" data-val="Seeds">Seeds</span>
+                        <span class="chip" data-val="Fertilizer">Fertilizer</span>
+                        <span class="chip" data-val="Pesticide">Pesticide</span>
+                        <span class="chip" data-val="Labor">Labor</span>
+                        <span class="chip" data-val="Irrigation">Irrigation</span>
+                        <span class="chip" data-val="Equipment">Equipment</span>
+                        <span class="chip" data-val="Transportation">Transportation</span>
+                        <span class="chip" data-val="Land Preparation">Land Preparation</span>
+                        <span class="chip" data-val="Tools &amp; Supplies">Tools &amp; Supplies</span>
+                        <span class="chip" data-val="Other">Other</span>
+                    </div>
+                </div>
+                <div class="field-group">
+                    <label class="field-label">Date<span class="req">*</span></label>
+                    <input type="date" id="exp-date" />
+                </div>
+                <div class="field-group">
+                    <label class="field-label">Note <span
+                            style="font-weight:400;color:var(--muted)">(optional)</span></label>
+                    <textarea id="exp-note" placeholder="Add a note…"></textarea>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
+                    <button class="btn-primary" id="expense-save-btn" onclick="saveExpense()">Save Expense</button>
+                    <button class="btn-secondary" onclick="goBack()">Cancel</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Harvest form: used to add or edit a harvest record -->
+        <section class="page" id="page-harvest">
+            <div class="sub-header">
+                <button class="btn-back" onclick="goBack()">‹</button>
+                <h2 id="harvest-form-title">Add Harvest</h2>
+            </div>
+            <div class="form-body">
+                <input type="hidden" id="harvest-edit-id" />
+                <div class="field-group">
+                    <label class="field-label">Crop<span class="req">*</span></label>
+                    <select id="hrv-crop" onchange="handleCropOther('hrv-crop','hrv-crop-other')">
+                        <option value="">— Select crop —</option>
+                        <option>Rice</option>
+                        <option>Corn</option>
+                        <option>Tomato</option>
+                        <option>Eggplant</option>
+                        <option>Kamote</option>
+                        <option>Sayote</option>
+                        <option>Ampalaya</option>
+                        <option>Sitaw</option>
+                        <option>Pechay</option>
+                        <option>Onion</option>
+                        <option>Garlic</option>
+                        <option>Cabbage</option>
+                        <option>Potato</option>
+                        <option>Banana</option>
+                        <option>Mango</option>
+                        <option value="Other">Other…</option>
+                    </select>
+                    <div class="other-input-wrap">
+                        <input type="text" id="hrv-crop-other" placeholder="Enter crop name" />
+                    </div>
+                </div>
+                <div class="field-group">
+                    <label class="field-label">Quantity Harvested<span class="req">*</span></label>
+                    <input type="number" id="hrv-qty" placeholder="0" min="0" />
+                </div>
+                <div class="field-group">
+                    <label class="field-label">Unit<span class="req">*</span></label>
+                    <div class="unit-group" id="hrv-unit-group">
+                        <span class="unit-chip selected" data-val="kg">kg</span>
+                        <span class="unit-chip" data-val="sack">sack</span>
+                        <span class="unit-chip" data-val="piece">piece</span>
+                        <span class="unit-chip" data-val="bundle">bundle</span>
+                        <span class="unit-chip" data-val="liter">liter</span>
+                    </div>
+                    <p class="field-hint">Tap to select the measurement unit</p>
+                </div>
+                <div class="field-group">
+                    <label class="field-label">Date of Harvest<span class="req">*</span></label>
+                    <input type="date" id="hrv-date" />
+                </div>
+                <div class="field-group">
+                    <label class="field-label">Note <span
+                            style="font-weight:400;color:var(--muted)">(optional)</span></label>
+                    <textarea id="hrv-note" placeholder="Add a note…"></textarea>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
+                    <button class="btn-primary" id="harvest-save-btn" onclick="saveHarvest()">Save Harvest</button>
+                    <button class="btn-secondary" onclick="goBack()">Cancel</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Price form: used to add or edit a market price record -->
+        <section class="page" id="page-price">
+            <div class="sub-header">
+                <button class="btn-back" onclick="goBack()">‹</button>
+                <h2 id="price-form-title">Add Price</h2>
+            </div>
+            <div class="form-body">
+                <input type="hidden" id="price-edit-id" />
+                <div class="field-group">
+                    <label class="field-label">Crop<span class="req">*</span></label>
+                    <select id="prc-crop" onchange="handleCropOther('prc-crop','prc-crop-other')">
+                        <option value="">— Select crop —</option>
+                        <option>Rice</option>
+                        <option>Corn</option>
+                        <option>Tomato</option>
+                        <option>Eggplant</option>
+                        <option>Kamote</option>
+                        <option>Sayote</option>
+                        <option>Ampalaya</option>
+                        <option>Sitaw</option>
+                        <option>Pechay</option>
+                        <option>Onion</option>
+                        <option>Garlic</option>
+                        <option>Cabbage</option>
+                        <option>Potato</option>
+                        <option>Banana</option>
+                        <option>Mango</option>
+                        <option value="Other">Other…</option>
+                    </select>
+                    <div class="other-input-wrap">
+                        <input type="text" id="prc-crop-other" placeholder="Enter crop name" />
+                    </div>
+                </div>
+                <div class="field-group">
+                    <label class="field-label">Price per Unit (₱)<span class="req">*</span></label>
+                    <div class="input-wrap">
+                        <span class="input-prefix">₱</span>
+                        <input type="number" id="prc-amount" placeholder="0" min="0" />
+                    </div>
+                </div>
+                <div class="field-group">
+                    <label class="field-label">Unit<span class="req">*</span></label>
+                    <div class="unit-group" id="prc-unit-group">
+                        <span class="unit-chip selected" data-val="kg">kg</span>
+                        <span class="unit-chip" data-val="sack">sack</span>
+                        <span class="unit-chip" data-val="piece">piece</span>
+                        <span class="unit-chip" data-val="bundle">bundle</span>
+                        <span class="unit-chip" data-val="liter">liter</span>
+                    </div>
+                </div>
+                <div class="field-group">
+                    <label class="field-label">Market / Source <span
+                            style="font-weight:400;color:var(--muted)">(optional)</span></label>
+                    <input type="text" id="prc-source" placeholder="e.g. Local Market, Town Palengke" />
+                    <p class="field-hint">Where you checked this price</p>
+                </div>
+                <div class="field-group">
+                    <label class="field-label">Date<span class="req">*</span></label>
+                    <input type="date" id="prc-date" />
+                </div>
+                <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
+                    <button class="btn-primary" id="price-save-btn" onclick="savePrice()">Save Price</button>
+                    <button class="btn-secondary" onclick="goBack()">Cancel</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom navigation bar for switching between main pages -->
+        <nav class="bottom-nav">
+            <button class="nav-btn active" id="nav-home" onclick="goPage('home')">
+                <svg viewBox="0 0 24 24">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+                Home
+            </button>
+            <button class="nav-btn" id="nav-records" onclick="goPage('records')">
+                <svg viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <line x1="3" y1="9" x2="21" y2="9" />
+                    <line x1="3" y1="15" x2="21" y2="15" />
+                    <line x1="9" y1="9" x2="9" y2="21" />
+                </svg>
+                Records
+            </button>
+            <button class="nav-btn" id="nav-summary" onclick="goPage('summary')">
+                <svg viewBox="0 0 24 24">
+                    <line x1="18" y1="20" x2="18" y2="10" />
+                    <line x1="12" y1="20" x2="12" y2="4" />
+                    <line x1="6" y1="20" x2="6" y2="14" />
+                </svg>
+                Summary
+            </button>
+        </nav>
+
+        <div id="toast"></div>
+
+    </div>
+
+    <!-- JS file inside js folder -->
+    <script src="./js/app.js"></script>
 </body>
+
 </html>
