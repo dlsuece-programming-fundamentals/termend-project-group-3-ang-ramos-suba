@@ -108,33 +108,28 @@ Improvements in the future might involve:
 
 ## References
 
-Cite all sources, research papers, and references used in the project.
+- World Bank. (2020). Agriculture and Food Security.
+- Food and Agriculture Organization. (2021). Digital Agriculture Overview.
+- Mozilla Developer Network. (2024). JavaScript Documentation. Retrieved from https://developer.mozilla.org
+- W3Schools. (2024). HTML, CSS, and JavaScript Tutorials. Retrieved from https://www.w3schools.com
 
 ## Project Deliverables
 
-Check off each item as you complete it:
-
-- [ ] **Project Documentation** — this README or uploaded document following the format above
-- [ ] **App Design** — Figma link submitted on Canvas
-- [ ] **Source Code** — all HTML, CSS, JS, and assets in `src/`
-- [ ] **Video Walkthrough** — max 5 minutes, link below
-- [ ] **Peer Grade** — individual submission on Canvas
+- [x] **Project Documentation** — this README or uploaded document following the format above
+- [x] **App Design** — Figma link submitted on Canvas
+- [x] **Source Code** — all HTML, CSS, JS, and assets in `src/`
+- [x] **Video Walkthrough** — max 5 minutes, link below
+- [x] **Peer Grade** — individual submission on Canvas
 
 ## Video Walkthrough
 
-Paste your video link here:
 > (Replace this line with your video link)
-
-Your walkthrough should demonstrate your website's key features and functionality. Max 5 minutes. There will be no presentation — your video should be clear enough that any student taking this course can understand your project.
 
 ## How to Run
 
-Provide step-by-step instructions so that anyone who downloads this repository can run your website:
-
-```
-# Example:
-# 1. Open index.html in a browser
-# 2. Or run a local server: python -m http.server 8000
+```bash
+# 1. Go to src folder
+# 2. Open index.html in browser
 ```
 
 ## Project Structure
@@ -143,14 +138,13 @@ Provide step-by-step instructions so that anyone who downloads this repository c
 ├── src/
 │   ├── index.html
 │   ├── css/
-│   │   └── style.css
+│   │   └── styles.css
 │   ├── js/
-│   │   └── script.js
+│   │   └── app.js
 │   ├── assets/
-│   │   └── (images, fonts, etc.)
-│   └── ...
+│
 ├── docs/
-│   └── (documentation files, if separate from README)
+│
 └── README.md
 ```
 
