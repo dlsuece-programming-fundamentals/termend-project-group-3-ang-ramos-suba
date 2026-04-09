@@ -123,7 +123,7 @@ Improvements in the future might involve:
 
 ## Video Walkthrough
 
-> https://drive.google.com/file/d/1RVdVEt0KCy24BmWqcGXXcfE1sIBxtCe5/view?usp=sharing
+> [https://drive.google.com/file/d/1RVdVEt0KCy24BmWqcGXXcfE1sIBxtCe5/view?usp=sharing](https://drive.google.com/file/d/1uK8Y-sFfoxRMVAtDF5HD82Zfyq574hpA/view?usp=sharing)
 
 ## How to Run
 
