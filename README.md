@@ -40,9 +40,9 @@ With a combination of these attributes in a single platform, the system offers a
 ## Web Development Tools and Algorithms
 
 ### Tools Used
-- **HTML** – structure of the application :contentReference[oaicite:2]{index=2}
-- **CSS** – layout, design, and responsiveness :contentReference[oaicite:3]{index=3}
-- **JavaScript** – functionality and logic :contentReference[oaicite:4]{index=4}
+- **HTML** – structure of the application 
+- **CSS** – layout, design, and responsiveness 
+- **JavaScript** – functionality and logic 
 
 ### Algorithms Implemented
 - Profit Calculation (Income – Expenses)
@@ -54,7 +54,22 @@ The system uses browser-based storage (`localStorage`) to retain user data even 
 
 ## Methodology
 
-Explain the methodology used in developing the project. Include any experimental or testing methods employed to test your website's functionality.
+The project was carried out in the following stages:
+
+1. **Planning**
+   - Determined the issue of manual record-keeping in farming.
+
+2. **System Design**
+   - Developed a basic interface of data recording (expenses, harvest, prices)
+
+3. **Development**
+   - HTML for structure
+   - CSS for design
+   - JavaScript to do logic and interactivity.
+
+4. **Testing**
+   - Testing of all features (input)
+   - Checked calculations and data storage.
 
 ## Testing and Evaluation of Results
 
