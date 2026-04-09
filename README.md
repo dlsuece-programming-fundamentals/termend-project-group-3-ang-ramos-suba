@@ -30,16 +30,27 @@ With a combination of these attributes in a single platform, the system offers a
 
 ## Objectives
 
-To make an application that allows farmers to efficiently manage their inventory, expenses, and income
-To provide a system for accurately recording and tracking harvested products 
-To enable farmers to monitor and analyze their expenses easily
-To be able to estimate farmers total income and profits
-To improve decision making through organized and accessible information
-To promote the use of apps and technology in agriculture
+- To make an application that allows farmers to efficiently manage their inventory, expenses, and income
+- To provide a system for accurately recording and tracking harvested products 
+- To enable farmers to monitor and analyze their expenses easily
+- To be able to estimate farmers total income and profits
+- To improve decision making through organized and accessible information
+- To promote the use of apps and technology in agriculture
 
 ## Web Development Tools and Algorithms
 
-Detail the different web development tools you used in the project (HTML, CSS, JavaScript, Bootstrap, etc.). Describe the algorithms you implemented and their significance in the development stages.
+### Tools Used
+- **HTML** – structure of the application :contentReference[oaicite:2]{index=2}
+- **CSS** – layout, design, and responsiveness :contentReference[oaicite:3]{index=3}
+- **JavaScript** – functionality and logic :contentReference[oaicite:4]{index=4}
+
+### Algorithms Implemented
+- Profit Calculation (Income – Expenses)
+- Data Validation (ensures correct user input)
+- Inventory Tracking (stores and displays harvest data)
+- Local Storage Handling (persistent data saving)
+
+The system uses browser-based storage (`localStorage`) to retain user data even after refresh.
 
 ## Methodology
 
