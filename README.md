@@ -1,19 +1,32 @@
 [![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=23490570)
 # LBYCPG3 Term End Project — Farm Ledger App
 
-**Group Members:** (Edit this line to add your full names)
+**Group Members:** 
+RAMOS, MARK LAWRENCE T.
+ANG, DARYL CLYDE T.
+SUBA, PAUL GERJO J.
 
 ## Abstract
 
-A concise summary of the project, its objectives, and its outcomes.
+The project will assist farmers in controlling their inventory, expenses and income. The system enables farmers to enter harvested products, track costs and predict overall profits in a systematic way. The combination of these features on one platform helps the application to track finances better, make better decisions, and increase productivity.
 
 ## Introduction
 
-Briefly introduce the project and its significance. Provide an overview of the chosen area or application.
+Agriculture is a significant activity in sustaining livelihoods and food security particularly in rural regions. Nevertheless, most farmers continue to use manual techniques to monitor harvests, costs, and revenues and this can be inaccurate.
+
+This project is aimed at creating a web-based application that can assist farmers to control their inventory, expenses, and income in an easier, more structured, and efficient manner. The system offers a user-friendly platform that enhances financial tracking and minimizes errors.
 
 ## Description of the Proposed System
 
-Provide a comprehensive description of the developed system. Explain its relevance and impact on the chosen area or application.
+The system is a web based application that helps farmers to manage their farming activities.
+
+Key features include:
+- Inventory tracking of harvested products
+- Expense recording and monitoring
+- Price tracking for agricultural goods
+- Automatic profit estimation
+
+With a combination of these attributes in a single platform, the system offers a centralized and easy to use solution to farm management.
 
 ## Objectives
 
