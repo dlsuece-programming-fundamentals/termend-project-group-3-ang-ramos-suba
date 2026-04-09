@@ -148,9 +148,3 @@ Improvements in the future might involve:
 └── README.md
 ```
 
-## Submission Notes
-
-- All source code must be committed and pushed before the deadline (**April 9, 2359**).
-- Do **not** upload generated or binary files.
-- Keep your repository organized — use folders as shown above.
-- All team members should contribute commits.
