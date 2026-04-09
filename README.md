@@ -30,7 +30,12 @@ With a combination of these attributes in a single platform, the system offers a
 
 ## Objectives
 
-Clearly state the specific objectives of the project. Emphasize the importance of achieving these objectives.
+To make an application that allows farmers to efficiently manage their inventory, expenses, and income
+To provide a system for accurately recording and tracking harvested products 
+To enable farmers to monitor and analyze their expenses easily
+To be able to estimate farmers total income and profits
+To improve decision making through organized and accessible information
+To promote the use of apps and technology in agriculture
 
 ## Web Development Tools and Algorithms
 
